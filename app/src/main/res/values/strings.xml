@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Inventario UNSA</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="email">Email</string>
+    <string name="bienvenido">Bienvenido !</string>
+</resources>
