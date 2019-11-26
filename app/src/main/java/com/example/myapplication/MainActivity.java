@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         pass = findViewById(R.id.edtPassword);
         //final String url ="https://api.github.com/users/Evin1-/repos";
         //final String url="https://reqres.in/api/login";
-        final String url="http://192.168.0.12/validar_usuario.php";
+        final String url="http://192.168.43.222/validar_usuario.php";
         btn = findViewById(R.id.btnLogin);
 
 
@@ -47,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONObject json = new JSONObject();
                 try {
-                    json.put("usuario",e);
-                    json.put("password",p);
+                    json.put("Email",e);
+                    json.put("Password",p);
                 }catch (JSONException error){
                     Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                 }
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         .url(url)
                         .post(RequestBody.create(MediaType.parse("application/json;charset=utf-8"),json.toString()))
                         .build();
-                Toast.makeText(MainActivity.this, json.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, json.toString() , Toast.LENGTH_LONG).show();
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override
@@ -71,11 +72,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call call, Response response) throws IOException {
                         if (response.isSuccessful()){
                             final String myResponse = response.body().string();
+                            Log.e("MainActivity", "onResponse: " + response.body() );
+
 
                             MainActivity.this.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(MainActivity.this, myResponse, Toast.LENGTH_SHORT).show();;
+                                    Toast.makeText(MainActivity.this, myResponse, Toast.LENGTH_SHORT).show();
 
                                 }
                             });
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     }
+
                 });
                 Intent i = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(i);
