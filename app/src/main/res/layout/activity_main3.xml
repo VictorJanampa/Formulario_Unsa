@@ -15,6 +15,7 @@
         android:background="@drawable/boton_redondo"
         android:text="Tomar foto"
         android:textColor="#E4E4E4"
+        android:onClick="takePicture"
         app:layout_constraintEnd_toEndOf="@+id/btnUpload"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnUpload"
@@ -29,6 +30,7 @@
         android:background="@drawable/boton_redondo"
         android:text="Subir foto"
         android:textColor="#E4E4E4"
+        android:onClick="cargarImagen"
         app:layout_constraintEnd_toEndOf="@+id/edtMarca"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/btnTake" />
